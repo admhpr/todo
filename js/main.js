@@ -1,18 +1,37 @@
-//v2
+//v3
 
-//a place to store todos
-var todos = [ 'item1', 'item2', 'item3' ];
+//a place to store to todos and it's methods
 
-//now using functions see utils.js
-displayTodos();
+var todoList = {
+  todos: [ 'item1', 'item2', 'item3' ],
+  displayTodos: function () {
+    console.log( 'My todos:', this.todos );
+  },
+  addTodo: function ( todo ) {
+    this.todos.push( todo );
+    this.displayTodos();
+  },
+  changeTodo: function ( pos, newValue ) {
+    this.todos[ pos ] = newValue;
+    this.displayTodos();
+  },
+  deleteTodo: function ( pos ) {
+    this.todos.splice( pos, 1 );
+    this.displayTodos();
+  }
+};
 
-addTodo( 'new todo' );
-addTodo( 'another todo' );
+//now using methods on a object
+todoList.displayTodos();
 
-changeTodo( 0, 'changed' );
-changeTodo( 0, 'changed again' );
+todoList.addTodo( 'new todo' );
+todoList.addTodo( 'another todo' );
+
+todoList.changeTodo( 0, 'changed' );
+todoList.changeTodo( 0, 'changed again' );
 
 //delete the first item
-deleteTodo( 0 );
-deleteTodo( 0 );
-deleteTodo( 0 );
+todoList.deleteTodo( 0 );
+todoList.deleteTodo( 0 );
+todoList.deleteTodo( 0 );
+todoList.deleteTodo( 0 );
