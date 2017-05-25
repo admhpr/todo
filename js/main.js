@@ -21,7 +21,7 @@ var todoList = {
   }
 };
 
-//now using methods on a object
+//now using methods on an object
 todoList.displayTodos();
 
 todoList.addTodo( 'new todo' );
