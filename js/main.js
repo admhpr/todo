@@ -1,12 +1,27 @@
-//v4
+//v5
 
 //a place to store to todos and it's methods
 
 var todoList = {
+
   todos: [],
+
   displayTodos: function () {
-    console.log( 'My Todos:', this.todos );
+    console.log( 'My Todos:' );
+    
+    var empty = this.todos.length === 0;
+    console.log( empty? "the todo list is empty" : "there are things to be done");
+
+    for ( var i = 0; i < this.todos.length; i++ ) {
+      //checking for completed property
+      if(this.todos[i].completed === true){
+        console.log( '(x)',this.todos[ i ].todoText );
+      }else{
+        console.log( '()',this.todos[ i ].todoText );
+      }
+    }
   },
+
   addTodo: function ( todoText ) {
     this.todos.push( {
       todoText: todoText,
@@ -14,10 +29,12 @@ var todoList = {
     } );
     this.displayTodos();
   },
+
   changeTodo: function ( pos, todoText ) {
     this.todos[ pos ].todoText = todoText;
     this.displayTodos();
   },
+
   deleteTodo: function ( pos ) {
     this.todos.splice( pos, 1 );
     this.displayTodos();
@@ -31,16 +48,10 @@ var todoList = {
 
 //now using methods on an object
 todoList.displayTodos();
-//
-todoList.addTodo( 'new todo' );
-todoList.toggleCompleted( 0 );
-// todoList.addTodo( 'another todo' );
-//
-// todoList.changeTodo( 0, 'changed' );
-// todoList.changeTodo( 0, 'changed again' );
-//
-// //delete the first item
-// todoList.deleteTodo( 0 );
-// todoList.deleteTodo( 0 );
-// todoList.deleteTodo( 0 );
-// todoList.deleteTodo( 0 );
+todoList.addTodo( 'my first todo' );
+todoList.toggleCompleted( 0 ); // true first item will print with an (x)
+
+//seed data
+for ( var i = 2; i < 5; i++ ) {
+  todoList.addTodo( "item " + i );
+}
