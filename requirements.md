@@ -1,4 +1,3 @@
-// v5.0 objects and looping
-*.displayTodos should show .todoText
-*.displayTodos should show if .todoText is empty
-*.displayTodos should show if .todoText is completed
+// v6.0 objects, conditions and loops
+*.toggleAll if everythings true, make everything false.
+*.toggleAll Otherwise make everything true.
