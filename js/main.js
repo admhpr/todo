@@ -1,18 +1,18 @@
-//as basic as it gets.
+//v2
 
 //a place to store todos
 var todos = [ 'item1', 'item2', 'item3' ];
 
-//add
-todos.push( 'item4' );
+//now using functions see utils.js
+displayTodos();
 
-//delete
-todos.splice( 0, 1 );
+addTodo( 'new todo' );
+addTodo( 'another todo' );
 
-//check
-console.log( todos );
+changeTodo( 0, 'changed' );
+changeTodo( 0, 'changed again' );
 
-//update
-todos[ 0 ] = 'newItem1';
-
-console.log( todos );
+//delete the first item
+deleteTodo( 0 );
+deleteTodo( 0 );
+deleteTodo( 0 );

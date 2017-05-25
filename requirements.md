@@ -1,6 +1,5 @@
-// v1.0
-There are some basic requirements to a TODO application they are:
-*It should have a place to store todos
-*It should have a way to display todos
+// v2.0 focus on the functionality
+*It should have a way to display todostion 
 *It should have a way to change todos
+*It should have a way to add todos
 *It should have a way to delete todos
