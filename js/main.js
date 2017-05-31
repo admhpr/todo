@@ -1,6 +1,6 @@
-//v6
+//v7
 
-//a place to store to todos and it's methods
+//a todo list object a place to store to todos and it's methods
 
 var todoList = {
 
@@ -10,14 +10,14 @@ var todoList = {
     console.log( 'My Todos:' );
 
     var empty = this.todos.length === 0;
-    console.log( empty? "the todo list is empty" : "there are things to be done");
+    console.log( empty ? "the todo list is empty" : "there are things to be done" );
 
     for ( var i = 0; i < this.todos.length; i++ ) {
       //checking for completed property
-      if(this.todos[i].completed === true){
-        console.log( '(x)',this.todos[ i ].todoText );
-      }else{
-        console.log( '()',this.todos[ i ].todoText );
+      if ( this.todos[ i ].completed === true ) {
+        console.log( '(x)', this.todos[ i ].todoText );
+      } else {
+        console.log( '()', this.todos[ i ].todoText );
       }
     }
   },
@@ -46,30 +46,30 @@ var todoList = {
     this.displayTodos();
   },
 
-  toggleAll: function(){
+  toggleAll: function () {
 
     var totalTodos = this.todos.length;
 
     var completedTodos = 0;
 
     //get completedTodos
-    for (var i = 0; i < totalTodos; i++) {
-      if(this.todos[i].completed === true){
+    for ( var i = 0; i < totalTodos; i++ ) {
+      if ( this.todos[ i ].completed === true ) {
         completedTodos++;
       }
     }
 
     //if everthing true, make everything false.
-    if(completedTodos === totalTodos){
-      for (var i = 0; i < totalTodos ; i++) {
-          this.todos[ i ].completed = false;
-        }
-      } else{ //make them true
-        for (var i = 0; i < totalTodos ; i++) {
-            this.todos[ i ].completed = true;
-          }
+    if ( completedTodos === totalTodos ) {
+      for ( var i = 0; i < totalTodos; i++ ) {
+        this.todos[ i ].completed = false;
       }
-      this.displayTodos();
+    } else { //make them true
+      for ( var i = 0; i < totalTodos; i++ ) {
+        this.todos[ i ].completed = true;
+      }
+    }
+    this.displayTodos();
   }
 };
 
@@ -84,3 +84,21 @@ for ( var i = 2; i < 5; i++ ) {
 }
 
 todoList.toggleAll();
+
+// we want to get access to the display todos button
+
+//display todos on button click using the a event listener
+var displayTodosBtn = document.getElementById( 'displayTodosBtn' );
+
+displayTodosBtn.addEventListener( 'click', function () {
+  todoList.displayTodos();
+} );
+
+// now let's grab the toggle all button
+var toggleAllBtn = document.getElementById( 'toggleAllBtn' );
+
+//toggle all
+
+toggleAllBtn.addEventListener( 'click', function () {
+  todoList.toggleAll();
+} );

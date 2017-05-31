@@ -1,3 +1,4 @@
-// v6.0 objects, conditions and loops
-*.toggleAll if everythings true, make everything false.
-*.toggleAll Otherwise make everything true.
+// v7.0 objects, conditions and loops
+* there should be a "display todos" and a toggle all button and a "toggle all" button.
+* clicking "display todos" should run todolist.displayTodos
+* clicking "toggle all" should run todoList.toggleAll.
