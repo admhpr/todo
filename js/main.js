@@ -23,6 +23,7 @@ var todoList = {
   },
 
   addTodo: function ( todoText ) {
+    // push a todo object into the todos array ^^^ this models what a todo item looks like
     this.todos.push( {
       todoText: todoText,
       completed: false
@@ -31,25 +32,27 @@ var todoList = {
   },
 
   changeTodo: function ( pos, todoText ) {
+    // takes a position in that array and changes the text
     this.todos[ pos ].todoText = todoText;
     this.displayTodos();
   },
 
   deleteTodo: function ( pos ) {
+    // takes a position in the array and spices it from the array from the position is is given
     this.todos.splice( pos, 1 );
     this.displayTodos();
   },
 
   toggleCompleted: function ( pos ) {
+    // toggles the completed property form true <--> false
     var todo = this.todos[ pos ];
     todo.completed = !todo.completed;
     this.displayTodos();
   },
 
   toggleAll: function () {
-
+    // toggles all items in the todo array
     var totalTodos = this.todos.length;
-
     var completedTodos = 0;
 
     //get completedTodos
@@ -59,12 +62,12 @@ var todoList = {
       }
     }
 
-    //Case 1: if everthing true, make everything false.
+    //Case 1: if everthing the completedTodos is equal to the array length make everything false.
     if ( completedTodos === totalTodos ) {
       for ( var i = 0; i < totalTodos; i++ ) {
         this.todos[ i ].completed = false;
       }
-    } else { //Case 2: make them true
+    } else { //Case 2: all todos are not completed make everthing completed.
       for ( var i = 0; i < totalTodos; i++ ) {
         this.todos[ i ].completed = true;
       }
@@ -72,20 +75,6 @@ var todoList = {
     this.displayTodos();
   }
 };
-
-// //now using methods on an object
-// todoList.displayTodos();
-// todoList.addTodo( 'my first todo' );
-// todoList.toggleCompleted( 0 ); // true first item will print with an (x)
-
-// //seed data
-// for ( var i = 2; i < 5; i++ ) {
-//   todoList.addTodo( "item " + i );
-// }
-//
-// todoList.toggleAll();
-
-// we want to get access to the display todos button
 
 //handler object
 
@@ -116,6 +105,17 @@ var handlers = {
   toggleCompleted: function () {
     var toggleCompletedPos = document.getElementById( 'toggleCompletedPos' );
     todoList.toggleCompleted( toggleCompletedPos.valueAsNumber );
-    toggleCompletedPos.value = '';
+    toggleCompletedPos.value = ''; // clears value in form field
+  }
+};
+
+var view = {
+  displayTodos: function () {
+    var todoUl = document.querySelector( 'ul' );
+    todoUl.innerHTML = ''; //clears the ul
+    for ( var i = 0; i < todoList.todos.length; i++ ) {
+      var todoLi = document.createElement( 'li' );
+      todoUl.appendChild( todoLi );
+    }
   }
 };
