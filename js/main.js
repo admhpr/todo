@@ -1,4 +1,4 @@
-//v7
+//v8
 
 //a todo list object a place to store to todos and it's methods
 
@@ -59,12 +59,12 @@ var todoList = {
       }
     }
 
-    //if everthing true, make everything false.
+    //Case 1: if everthing true, make everything false.
     if ( completedTodos === totalTodos ) {
       for ( var i = 0; i < totalTodos; i++ ) {
         this.todos[ i ].completed = false;
       }
-    } else { //make them true
+    } else { //Case 2: make them true
       for ( var i = 0; i < totalTodos; i++ ) {
         this.todos[ i ].completed = true;
       }
@@ -73,32 +73,49 @@ var todoList = {
   }
 };
 
-//now using methods on an object
-todoList.displayTodos();
-todoList.addTodo( 'my first todo' );
-todoList.toggleCompleted( 0 ); // true first item will print with an (x)
+// //now using methods on an object
+// todoList.displayTodos();
+// todoList.addTodo( 'my first todo' );
+// todoList.toggleCompleted( 0 ); // true first item will print with an (x)
 
-//seed data
-for ( var i = 2; i < 5; i++ ) {
-  todoList.addTodo( "item " + i );
-}
-
-todoList.toggleAll();
+// //seed data
+// for ( var i = 2; i < 5; i++ ) {
+//   todoList.addTodo( "item " + i );
+// }
+//
+// todoList.toggleAll();
 
 // we want to get access to the display todos button
 
-//display todos on button click using the a event listener
-var displayTodosBtn = document.getElementById( 'displayTodosBtn' );
+//handler object
 
-displayTodosBtn.addEventListener( 'click', function () {
-  todoList.displayTodos();
-} );
-
-// now let's grab the toggle all button
-var toggleAllBtn = document.getElementById( 'toggleAllBtn' );
-
-//toggle all
-
-toggleAllBtn.addEventListener( 'click', function () {
-  todoList.toggleAll();
-} );
+var handlers = {
+  displayTodos: function () {
+    todoList.displayTodos();
+  },
+  toggleAll: function () {
+    todoList.toggleAll();
+  },
+  addTodo: function () {
+    var addTodo = document.getElementById( 'addTodo' );
+    todoList.addTodo( addTodo.value );
+    addTodo.value = '';
+  },
+  changeTodo: function () {
+    var changeTodoPos = document.getElementById( 'changeTodoPos' );
+    var changeTodoText = document.getElementById( 'changeTodoText' );
+    todoList.changeTodo( changeTodoPos.valueAsNumber, changeTodoText.value );
+    changeTodoPos.value = '';
+    changeTodoText.value = '';
+  },
+  deleteTodo: function () {
+    var deleteTodoPos = document.getElementById( 'deleteTodoPos' );
+    todoList.deleteTodo( deleteTodoPos.valueAsNumber );
+    deleteTodoPos.value = '';
+  },
+  toggleCompleted: function () {
+    var toggleCompletedPos = document.getElementById( 'toggleCompletedPos' );
+    todoList.toggleCompleted( toggleCompletedPos.valueAsNumber );
+    toggleCompletedPos.value = '';
+  }
+};
