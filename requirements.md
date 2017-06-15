@@ -1,4 +1,6 @@
-// v9.0 escape the console
-* there should  be a li for every todo
-* each should have todo text
-* each should show completed
+// v10
+* there should  be a way to create delete buttons
+* each should be a delete button for each todo
+* each li should have an id
+* each button should access todo id
+* delet button should delete item

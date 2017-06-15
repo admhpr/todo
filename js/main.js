@@ -1,4 +1,4 @@
-//v9
+//v10
 
 //a todo list object a place to store to todos and it's methods
 
@@ -81,9 +81,8 @@ var handlers = {
     changeTodoText.value = '';
     view.displayTodos();
   },
-  deleteTodo: function () {
-    var deleteTodoPos = document.getElementById( 'deleteTodoPos' );
-    todoList.deleteTodo( deleteTodoPos.valueAsNumber );
+  deleteTodo: function ( position ) {
+    todoList.deleteTodo( position );
     deleteTodoPos.value = '';
     view.displayTodos();
   },
@@ -111,8 +110,41 @@ var view = {
         todoTextWithCompletion = '( ) ' + todo.todoText
       }
 
+      todoLi.id = i; //from the iteration ^^
       todoLi.textContent = todoTextWithCompletion;
+      todoLi.appendChild( this.createDeleteButton() );
       todoUl.appendChild( todoLi );
     }
+  },
+  createDeleteButton: function () {
+    //create button
+    var deleteButton = document.createElement( 'button' );
+    //insert text
+    deleteButton.textContent = 'Delete';
+    //add class name
+    deleteButton.className = 'deleteButton';
+    return deleteButton;
+  },
+  setUpEventListeners: function () {
+    var todosUl = document.querySelector( 'ul' );
+    todosUl.addEventListener( 'click', function ( event ) {
+      //Get elememt that was clicked on
+      var elementClicked = event.target
+
+      //check if elememt clicked is a delete button
+
+      if ( elementClicked.className === 'deleteButton' ) {
+        //Run handlers.deleteTodo
+        var position = parseInt( elementClicked.parentNode.id );
+        handlers.deleteTodo( position );
+      }
+    } );
   }
 };
+
+view.setUpEventListeners();
+//utility higher order function
+function runWithDebugger( ourFunction ) {
+  debugger;
+  ourFunction();
+}
