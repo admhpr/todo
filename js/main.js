@@ -1,4 +1,4 @@
-//v10
+// v11
 
 //a todo list object a place to store to todos and it's methods
 
@@ -40,22 +40,16 @@ var todoList = {
     var completedTodos = 0;
 
     //get completedTodos
-    for ( var i = 0; i < totalTodos; i++ ) {
-      if ( this.todos[ i ].completed === true ) {
+    this.todos.forEach( function ( todo ) {
+      if ( todo.completed === true ) {
         completedTodos++;
       }
-    }
+    } );
 
-    //Case 1: if everthing the completedTodos is equal to the array length make everything false.
-    if ( completedTodos === totalTodos ) {
-      for ( var i = 0; i < totalTodos; i++ ) {
-        this.todos[ i ].completed = false;
-      }
-    } else { //Case 2: all todos are not completed make everthing completed.
-      for ( var i = 0; i < totalTodos; i++ ) {
-        this.todos[ i ].completed = true;
-      }
-    }
+    //toggling completed on/off
+    this.todos.forEach( function ( todo ) {
+      completedTodos === totalTodos ? todo.completed = false : todo.completed = true;
+    } );
 
   }
 };
@@ -83,7 +77,6 @@ var handlers = {
   },
   deleteTodo: function ( position ) {
     todoList.deleteTodo( position );
-    deleteTodoPos.value = '';
     view.displayTodos();
   },
   toggleCompleted: function () {
@@ -98,9 +91,9 @@ var view = {
   displayTodos: function () {
     var todoUl = document.querySelector( 'ul' );
     todoUl.innerHTML = ''; //clears the ul
-    for ( var i = 0; i < todoList.todos.length; i++ ) {
-      var todoLi = document.createElement( 'li' );
-      var todo = todoList.todos[ i ];
+    todoList.todos.forEach( function ( todo, pos ) {
+      var todoLi = document.createElement( 'li' ); //forEach
+
       var todoTextWithCompletion = '';
 
       // add completed data
@@ -110,11 +103,11 @@ var view = {
         todoTextWithCompletion = '( ) ' + todo.todoText
       }
 
-      todoLi.id = i; //from the iteration ^^
+      todoLi.id = pos; //from the iteration ^^
       todoLi.textContent = todoTextWithCompletion;
       todoLi.appendChild( this.createDeleteButton() );
       todoUl.appendChild( todoLi );
-    }
+    }, this ); // passing in this aswell as callback to refer to the view object
   },
   createDeleteButton: function () {
     //create button
