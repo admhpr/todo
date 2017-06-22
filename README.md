@@ -1,4 +1,4 @@
-## The foundation of many web apps is the todo functionality ie 'Create Read Update Destroy'
+## The foundation of many web apps is the todo functionality i.e. 'Create Read Update Destroy'
 
 for that reason I am building this application from scratch using an iterative process to improve functionality and complexity
 on each version.
